@@ -16,7 +16,7 @@ public class TaskRepository {
             }
 
     public List<Task> findAll() {
-        return jdbcClient.sql("select * from run")
+        return jdbcClient.sql("select * from task")
                 .query(Task.class)
                 .list();
     }
