@@ -20,4 +20,11 @@ public class TaskService {
        return taskRepository.findAll();
     }
 
+    public void createTask(String title) {
+        Task task = new Task(null, title, false);
+        // task.withTitle(title); dont actually need this if we set a constructor for the new task instances
+        // task.withCompleted(false);
+        taskRepository.save(task);
+    }
+
 }

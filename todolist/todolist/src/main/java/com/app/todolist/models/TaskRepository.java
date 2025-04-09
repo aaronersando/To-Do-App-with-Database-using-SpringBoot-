@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 @Repository
 public class TaskRepository {
@@ -20,6 +21,16 @@ public class TaskRepository {
                 .query(Task.class)
                 .list();
     }
+
+    public void save(Task task) {
+                var updated = jdbcClient.sql("insert into task(title, completed) values (?, ?)")
+                        .params(List.of(task.title(), task.completed()))
+                        .update();
+        
+                Assert.state(updated == 1, "Failed to update run " + task.title());
+            }
+
+    
     
 }
 
