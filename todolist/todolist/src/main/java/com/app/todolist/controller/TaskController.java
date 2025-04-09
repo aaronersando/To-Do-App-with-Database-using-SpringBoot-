@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,7 +37,27 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    
+    @GetMapping("/{id}/delete")
+    public String deleteTask(@PathVariable Integer id) {
+        taskService.deleteTask(id);
+        return "redirect:/tasks";
+
+    }
+
+    @GetMapping("/{id}/toggle")
+    public String toggleTask(@RequestBody Task task, @PathVariable Integer id) {
+        taskService.toggleTask(task, id);
+        return "redirect:/tasks";
+
+    }
+
+    // @ResponseStatus(HttpStatus.NO_CONTENT)
+    // @PutMapping("/{id}")
+    // void update(@RequestBody Run run, @PathVariable Integer id){
+    //     runRepository.update(run, id);
+    // }
+
+
 
 }
 

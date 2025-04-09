@@ -27,4 +27,13 @@ public class TaskService {
         taskRepository.save(task);
     }
 
+    public void deleteTask(Integer id) {
+        taskRepository.deleteById(id);
+    }
+
+    public void toggleTask(Task task, Integer id) {
+        taskRepository.updateById(task, id);
+        taskRepository.save(task);
+    }
+
 }

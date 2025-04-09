@@ -30,6 +30,38 @@ public class TaskRepository {
                 Assert.state(updated == 1, "Failed to update run " + task.title());
             }
 
+    public void deleteById(Integer id) {
+        var deleted = jdbcClient.sql("delete from task where id = :id")
+                        .param("id", id)
+                        .update();
+        
+                Assert.state(deleted == 1, "Failed to delete run with id " + id);
+            }
+
+    public void updateById(Task task, Integer id) {
+        var updated = jdbcClient.sql("update task set completed = NOT completed where id = ?")
+                        .params(List.of(id))
+                        .update();
+        
+                Assert.state(updated == 1, "Failed to update run " + task.title());
+            }
+
+    // public void update(Run run, Integer id) {
+        //         var updated = jdbcClient.sql("update run set title = ?, started_on = ?, completed_on = ?, miles = ?, location = ? where id = ?")
+        //                 .params(List.of(run.title(), run.startedOn(), run.completedOn(), run.miles(), run.location().toString(), id))
+        //                 .update();
+        
+        //         Assert.state(updated == 1, "Failed to update run " + run.title());
+        //     }
+
+    // public void delete(Integer id) {
+        //         var deleted = jdbcClient.sql("delete from run where id = :id")
+        //                 .param("id", id)
+        //                 .update();
+        
+        //         Assert.state(deleted == 1, "Failed to delete run with id " + id);
+        //     }
+
     
     
 }
