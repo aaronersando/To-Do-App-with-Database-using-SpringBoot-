@@ -31,9 +31,8 @@ public class TaskService {
         taskRepository.deleteById(id);
     }
 
-    public void toggleTask(Task task, Integer id) {
-        taskRepository.updateById(task, id);
-        taskRepository.save(task);
+    public void toggleTask(Integer id) {
+        taskRepository.updateById(id);
     }
 
 }

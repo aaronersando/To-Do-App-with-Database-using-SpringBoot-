@@ -38,12 +38,12 @@ public class TaskRepository {
                 Assert.state(deleted == 1, "Failed to delete run with id " + id);
             }
 
-    public void updateById(Task task, Integer id) {
-        var updated = jdbcClient.sql("update task set completed = NOT completed where id = ?")
-                        .params(List.of(id))
-                        .update();
-        
-                Assert.state(updated == 1, "Failed to update run " + task.title());
+            public void updateById(Integer id) {
+                var updated = jdbcClient.sql("UPDATE task SET completed = NOT completed WHERE id = ?")
+                                .params(List.of(id))
+                                .update();
+            
+                Assert.state(updated == 1, "Failed to toggle task with id " + id);
             }
 
     // public void update(Run run, Integer id) {

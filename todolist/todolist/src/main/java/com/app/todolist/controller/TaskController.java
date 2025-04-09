@@ -45,11 +45,10 @@ public class TaskController {
     }
 
     @GetMapping("/{id}/toggle")
-    public String toggleTask(@RequestBody Task task, @PathVariable Integer id) {
-        taskService.toggleTask(task, id);
+    public String toggleTask(@PathVariable Integer id) {
+        taskService.toggleTask(id);
         return "redirect:/tasks";
-
-    }
+}
 
     // @ResponseStatus(HttpStatus.NO_CONTENT)
     // @PutMapping("/{id}")
